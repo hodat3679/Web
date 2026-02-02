@@ -6,87 +6,154 @@
 <title>ScriptMM2</title>
 
 <style>
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  font-family: 'Segoe UI', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #eaf6ff;
+body{
+  margin:0; min-height:100vh;
+  background:linear-gradient(135deg,#020617,#0f172a);
+  font-family:'Segoe UI',sans-serif;
+  display:flex; align-items:center; justify-content:center;
+  color:#e5f3ff;
+}
+.container{
+  background:rgba(0,0,0,.65);
+  padding:28px; border-radius:18px;
+  width:92%; max-width:900px;
+  box-shadow:0 25px 60px rgba(0,0,0,.7);
+  text-align:center;
+}
+h1{ color:#38bdf8; margin-bottom:14px; }
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin-bottom:18px;
 }
 
-.container {
-  background: rgba(0,0,0,0.55);
-  padding: 25px;
-  border-radius: 16px;
-  width: 92%;
-  max-width: 850px;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+.tiktok-btn{
+  text-decoration:none;
+  background:linear-gradient(90deg,#ff0050,#00f2ea);
+  color:#020617;
+  padding:16px;
+  border-radius:14px;
+  font-weight:bold;
 }
 
-h1 {
-  text-align: center;
-  color: #38bdf8;
-  margin-bottom: 20px;
+.tiktok-btn.done{
+  background:linear-gradient(90deg,#22c55e,#16a34a);
+  color:#022c22;
 }
 
-pre {
-  background: #020617;
-  padding: 18px;
-  border-radius: 12px;
-  overflow-x: auto;
-  color: #7dd3fc;
-  font-size: 14px;
+.timer{
+  font-size:13px;
+  margin-top:6px;
+  opacity:.8;
 }
 
-button {
-  margin-top: 18px;
-  width: 100%;
-  padding: 14px;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  background: linear-gradient(90deg, #38bdf8, #0ea5e9);
-  color: #020617;
+.loader{ display:none; margin-top:12px; }
+.spinner{
+  width:42px; height:42px; margin:auto;
+  border:5px solid #1e293b;
+  border-top:5px solid #38bdf8;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
 }
+@keyframes spin{ to{transform:rotate(360deg)} }
 
-button:active {
-  transform: scale(0.98);
-}
-
-footer {
-  margin-top: 18px;
-  text-align: center;
-  font-size: 13px;
-  opacity: 0.7;
+pre{
+  display:none; margin-top:18px;
+  background:#020617; padding:18px;
+  border-radius:12px; overflow-x:auto;
+  color:#7dd3fc; font-size:14px;
 }
 </style>
 </head>
 
 <body>
 <div class="container">
-  <h1>ScriptMM2</h1>
+  <h1>🔓 Follow đủ 2 TikTok để mở Script</h1>
 
-  <pre id="script">loadstring(game:HttpGet("https://raw.githubusercontent.com/BestScript-netizen/MM2Scripts/refs/heads/main/ZephyrScript"))()</pre>
+  <div class="grid">
+    <a class="tiktok-btn" id="btn1" href="https://www.tiktok.com/@mm2scriptontop?_r=1&_t=ZS-93aLHXuWyrl" target="_blank">
+      Acc Chính
+      <div class="timer" id="t1"></div>
+    </a>
 
-  <button onclick="copyScript()">📋 Copy Script</button>
+    <a class="tiktok-btn" id="btn2" href="https://www.tiktok.com/@scriptroblox40?_r=1&_t=ZS-93aLNOR9W3o" target="_blank">
+      Acc Phụ
+      <div class="timer" id="t2"></div>
+    </a>
+  </div>
 
-  <footer>
-    © BestScript-netizen • GitHub Pages
-  </footer>
+  <div class="loader" id="loader">
+    <div class="spinner"></div>
+    <div style="font-size:14px;opacity:.8">Đang mở script...</div>
+  </div>
+
+  <pre id="script">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BestScript-netizen/MM2Scripts/refs/heads/main/ZephyrScript"))()
+  </pre>
 </div>
 
 <script>
-function copyScript() {
-  const text = document.getElementById("script").innerText;
-  navigator.clipboard.writeText(text).then(() => {
-    alert("Đã copy script!");
-  });
+// ===== CONFIG =====
+const WAIT_EACH = 3; // mỗi ô 3 giây
+// ==================
+
+// ⚠️ KHÔNG LƯU TRẠNG THÁI → reload là reset
+let done1 = false;
+let done2 = false;
+
+function start(btn, timerEl, markDone){
+  if(btn.classList.contains("done")) return;
+
+  let time = WAIT_EACH;
+  timerEl.textContent = `Đang xác minh... ${time}s`;
+
+  const iv = setInterval(()=>{
+    time--;
+    timerEl.textContent = `Đang xác minh... ${time}s`;
+
+    if(time<=0){
+      clearInterval(iv);
+      btn.classList.add("done");
+      timerEl.textContent = "Hoàn tất ✔";
+      markDone();
+      checkAll();
+    }
+  },1000);
 }
+
+function checkAll(){
+  if(done1 && done2){
+    document.getElementById("loader").style.display="block";
+    setTimeout(()=>{
+      document.getElementById("loader").style.display="none";
+      document.getElementById("script").style.display="block";
+    },800);
+  }
+}
+
+// Click handlers
+btn1.onclick = ()=> start(btn1, t1, ()=> done1 = true);
+btn2.onclick = ()=> start(btn2, t2, ()=> done2 = true);
+
+// 🔄 RESET CỨNG KHI RELOAD / ĐÓNG TAB
+window.addEventListener("beforeunload", ()=>{
+  done1 = false;
+  done2 = false;
+});
+
+// 🚫 CHẶN SOURCE ĐƠN GIẢN
+document.addEventListener("contextmenu", e=>e.preventDefault());
+document.addEventListener("keydown", e=>{
+  if(
+    e.key==="F12" ||
+    (e.ctrlKey && e.key.toLowerCase()==="u") ||
+    (e.ctrlKey && e.shiftKey && ["i","j","c"].includes(e.key.toLowerCase()))
+  ){
+    e.preventDefault();
+  }
+});
 </script>
 </body>
 </html>
