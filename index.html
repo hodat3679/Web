@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScriptMM2</title>
+
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #eaf6ff;
+}
+
+.container {
+  background: rgba(0,0,0,0.55);
+  padding: 25px;
+  border-radius: 16px;
+  width: 92%;
+  max-width: 850px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+}
+
+h1 {
+  text-align: center;
+  color: #38bdf8;
+  margin-bottom: 20px;
+}
+
+pre {
+  background: #020617;
+  padding: 18px;
+  border-radius: 12px;
+  overflow-x: auto;
+  color: #7dd3fc;
+  font-size: 14px;
+}
+
+button {
+  margin-top: 18px;
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+  color: #020617;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+footer {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.7;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h1>ScriptMM2</h1>
+
+  <pre id="script">loadstring(game:HttpGet("https://raw.githubusercontent.com/BestScript-netizen/MM2Scripts/refs/heads/main/ZephyrScript"))()</pre>
+
+  <button onclick="copyScript()">📋 Copy Script</button>
+
+  <footer>
+    © BestScript-netizen • GitHub Pages
+  </footer>
+</div>
+
+<script>
+function copyScript() {
+  const text = document.getElementById("script").innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    alert("Đã copy script!");
+  });
+}
+</script>
+</body>
+</html>
