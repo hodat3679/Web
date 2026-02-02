@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>ScriptMM2</title>
+<meta charset="UTF-8">
+<title>ScriptMM2</title>
 </head>
 <body>
 
 <script>
-/* OBF LOADER */
 (function(){
-  const _0xdata = "BASE64_CODE_Ở_ĐÂY";
-  document.write(atob(_0xdata));
+  const _k = 7;
+  const _d = "PASTE_PAYLOAD_HERE";
+
+  function _x(s){
+    let r="";
+    for(let i=0;i<s.length;i++){
+      r+=String.fromCharCode(s.charCodeAt(i)^_k);
+    }
+    return r;
+  }
+
+  document.write(_x(atob(_d)));
 })();
 </script>
 
