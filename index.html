@@ -245,7 +245,7 @@ btn1.onclick=()=>start(btn1,t1,()=>d1=true);
 btn2.onclick=()=>start(btn2,t2,()=>d2=true);
 
 function copyScript(){
-  navigator.clipboard.writeText(script.innerText)
+  navigator.clipboard.writeText(script.innerText.trim())
     .then(()=>alert("Script copied!"));
 }
 
