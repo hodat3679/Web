@@ -2,197 +2,344 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Escape Tsunami Brainrots Script</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial;
+font-family:system-ui;
 }
 
 body{
-height:100vh;
+min-height:100vh;
 display:flex;
-justify-content:center;
 align-items:center;
-background:linear-gradient(180deg,#0f3f6b,#1b7fb8,#58b3db);
+justify-content:center;
+background:linear-gradient(180deg,#0369a1,#0ea5e9);
+color:white;
 overflow:hidden;
 }
 
-/* waves */
-body::before{
-content:"";
-position:absolute;
+/* 🌊 WAVES */
+
+.wave{
+position:fixed;
+bottom:0;
+left:0;
 width:200%;
-height:200%;
-background:radial-gradient(circle at 50% 50%,rgba(255,255,255,0.08),transparent 60%);
-animation:wave 10s infinite linear;
+height:240px;
+background:rgba(255,255,255,.25);
+border-radius:45%;
+animation:waveMove 14s linear infinite;
 }
 
-@keyframes wave{
-0%{transform:translateY(0)}
-50%{transform:translateY(40px)}
-100%{transform:translateY(0)}
+.wave2{
+bottom:60px;
+opacity:.5;
+animation-duration:18s;
 }
 
-/* card */
+.wave3{
+bottom:110px;
+opacity:.25;
+animation-duration:22s;
+}
+
+@keyframes waveMove{
+0%{transform:translateX(0)}
+100%{transform:translateX(-50%)}
+}
+
+/* CARD */
+
+.container{
+width:100%;
+max-width:420px;
+padding:20px;
+z-index:2;
+}
 
 .card{
-width:350px;
-background:#0b3d53;
-padding:35px;
+background:rgba(0,0,0,.55);
+backdrop-filter:blur(12px);
 border-radius:20px;
+padding:30px;
+box-shadow:0 0 50px rgba(0,0,0,.6);
+}
+
+/* TITLE */
+
+h1{
 text-align:center;
-box-shadow:0 0 40px rgba(0,0,0,0.5);
-color:white;
+font-size:1.45rem;
+margin-bottom:18px;
+color:#7dd3fc;
 }
 
-.game-icon{
-width:110px;
-height:110px;
-border-radius:20px;
-margin:auto;
-display:block;
-box-shadow:0 0 25px #00eaff;
-margin-bottom:15px;
-}
-
-.title{
-font-size:22px;
-font-weight:bold;
-margin-bottom:20px;
-}
+/* PROGRESS */
 
 .progress{
-width:100%;
-height:12px;
-background:#133f4d;
-border-radius:10px;
+height:16px;
+background:rgba(255,255,255,.2);
+border-radius:12px;
 overflow:hidden;
-margin-bottom:10px;
 }
 
-.progress-bar{
+.bar{
 height:100%;
 width:0%;
-background:linear-gradient(90deg,#21ff7a,#39e0ff);
-transition:1s;
+background:linear-gradient(90deg,#22c55e,#4ade80);
+box-shadow:0 0 12px #22c55e;
+transition:.35s;
 }
 
 .percent{
-margin-bottom:20px;
+text-align:center;
+margin-top:6px;
+font-size:.9rem;
 }
 
-.script-box{
-background:#061e33;
-padding:12px;
-border-radius:12px;
-font-size:12px;
-margin-bottom:20px;
-word-break:break-all;
+/* BUTTONS */
+
+.tiktok-list{
+margin-top:20px;
+display:flex;
+flex-direction:column;
+gap:14px;
 }
+
+.tiktok-btn{
+text-decoration:none;
+padding:16px;
+border-radius:14px;
+font-weight:600;
+text-align:center;
+color:white;
+background:linear-gradient(135deg,#06b6d4,#3b82f6);
+transition:.25s;
+}
+
+.tiktok-btn:hover{
+transform:scale(1.04);
+}
+
+.tiktok-btn.done{
+background:linear-gradient(90deg,#22c55e,#16a34a);
+box-shadow:0 0 14px #22c55e;
+}
+
+.timer{
+font-size:.8rem;
+margin-top:6px;
+}
+
+/* SCRIPT TERMINAL */
+
+pre{
+display:none;
+margin-top:20px;
+background:#020617;
+border-radius:14px;
+padding:18px;
+color:#7dd3fc;
+font-size:.8rem;
+overflow-x:auto;
+animation:fade .7s ease;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(12px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+/* COPY BUTTON */
 
 .copy-btn{
-background:linear-gradient(90deg,#5ec9ff,#9ddfff);
-border:none;
-padding:12px;
+display:none;
+margin-top:14px;
 width:100%;
-border-radius:12px;
-font-size:15px;
+padding:14px;
+border:none;
+border-radius:14px;
+font-weight:600;
+background:linear-gradient(90deg,#38bdf8,#bae6fd);
 cursor:pointer;
-transition:.3s;
+transition:.25s;
 }
 
 .copy-btn:hover{
 transform:scale(1.05);
 }
 
+/* FOOTER */
+
 .footer{
-margin-top:15px;
-font-size:12px;
-opacity:.7;
+margin-top:18px;
+text-align:center;
+font-size:.75rem;
+opacity:.9;
 }
+
 </style>
 </head>
 
 <body>
 
+<div class="wave"></div>
+<div class="wave wave2"></div>
+<div class="wave wave3"></div>
+
+<div class="container">
 <div class="card">
 
-<img id="gameIcon" class="game-icon">
-
-<div class="title">Escape Tsunami Brainrots Script</div>
+<h1>Escape Tsunami Brainrots Script</h1>
 
 <div class="progress">
-<div id="bar" class="progress-bar"></div>
+<div class="bar" id="bar"></div>
 </div>
 
-<div id="percent" class="percent">0%</div>
+<div class="percent" id="percent">0%</div>
 
-<div class="script-box" id="scriptBox" style="display:none">
+<div class="tiktok-list" id="tiktokGrid">
 
+<a class="tiktok-btn" id="btn1"
+href="https://www.tiktok.com/@mm2scriptontop"
+target="_blank">
+⭐ Follow Main TikTok
+<div class="timer" id="t1"></div>
+</a>
+
+<a class="tiktok-btn" id="btn2"
+href="https://www.tiktok.com/@scriptroblox40"
+target="_blank">
+🌙 Follow Sub TikTok
+<div class="timer" id="t2"></div>
+</a>
+
+</div>
+
+<pre id="script">
 loadstring(game:HttpGet("https://raw.githubusercontent.com/BestScript-netizen/EscapeTsunami/refs/heads/main/ForBrainrots"))()
+</pre>
+
+<button class="copy-btn" id="copyBtn" onclick="copyScript()">📋 Copy Script</button>
+
+<div class="footer">© HdatScript — Escape Tsunami Scripts</div>
 
 </div>
-
-<button class="copy-btn" onclick="copyScript()">📋 Copy Script</button>
-
-<div class="footer">
-© HdatScript — Escape Tsunami Scripts
-</div>
-
 </div>
 
 <script>
 
-/* AUTO LOAD ROBLOX GAME ICON */
+const WAIT=5
 
-const placeId = "131623223084840";
+let d1=false
+let d2=false
+let progress=0
 
-fetch(`https://apis.roblox.com/universes/v1/places/${placeId}/universe`)
-.then(res=>res.json())
-.then(data=>{
+function setProgress(p){
 
-let universe = data.universeId;
+progress=Math.min(100,p)
 
-fetch(`https://thumbnails.roblox.com/v1/games/icons?universeIds=${universe}&size=256x256&format=Png&isCircular=false`)
-.then(res=>res.json())
-.then(icon=>{
-document.getElementById("gameIcon").src = icon.data[0].imageUrl;
-})
+bar.style.width=progress+"%"
 
-})
+percent.textContent=Math.floor(progress)+"%"
 
-/* PROGRESS ANIMATION */
-
-let p=0
-
-let interval=setInterval(()=>{
-
-p+=10
-document.getElementById("bar").style.width=p+"%"
-document.getElementById("percent").innerText=p+"%"
-
-if(p>=100){
-clearInterval(interval)
-document.getElementById("scriptBox").style.display="block"
 }
 
-},400)
+function start(btn,timer,done){
 
-/* COPY */
+if(btn.classList.contains("done")) return
+
+let t=WAIT
+
+let step=50/WAIT
+
+timer.textContent=`Verifying... ${t}s`
+
+const iv=setInterval(()=>{
+
+t--
+
+setProgress(progress+step)
+
+timer.textContent=`Verifying... ${t}s`
+
+if(t<=0){
+
+clearInterval(iv)
+
+btn.classList.add("done")
+
+timer.textContent="Followed ✔"
+
+done()
+
+setProgress(Math.round(progress/50)*50)
+
+check()
+
+}
+
+},1000)
+
+}
+
+function check(){
+
+if(d1 && d2){
+
+tiktokGrid.style.display="none"
+
+script.style.display="block"
+
+copyBtn.style.display="block"
+
+setProgress(100)
+
+}
+
+}
+
+btn1.onclick=(e)=>{
+e.preventDefault()
+window.open(btn1.href,"_blank")
+start(btn1,t1,()=>d1=true)
+}
+
+btn2.onclick=(e)=>{
+e.preventDefault()
+window.open(btn2.href,"_blank")
+start(btn2,t2,()=>d2=true)
+}
 
 function copyScript(){
 
-let text=document.getElementById("scriptBox").innerText
+navigator.clipboard.writeText(script.innerText.trim())
 
-navigator.clipboard.writeText(text)
+.then(()=>{
 
-alert("Script Copied!")
+copyBtn.innerText="✅ Copied!"
+
+setTimeout(()=>{
+copyBtn.innerText="📋 Copy Script"
+},2000)
+
+})
 
 }
+
+document.addEventListener("contextmenu",e=>e.preventDefault())
+
+document.addEventListener("keydown",e=>{
+if(e.key==="F12"||(e.ctrlKey&&["u","i","j","c"].includes(e.key.toLowerCase())))
+e.preventDefault()
+})
 
 </script>
 
