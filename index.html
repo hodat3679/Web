@@ -20,9 +20,29 @@ min-height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
-background:linear-gradient(180deg,#0c4a6e,#075985,#022c22);
+background:radial-gradient(circle at 30% 20%, #0ea5e9, transparent 40%),
+radial-gradient(circle at 80% 70%, #22c55e, transparent 40%),
+linear-gradient(180deg,#020617,#0c4a6e,#022c22);
 color:#fef3c7;
 overflow:hidden;
+}
+
+/* ✨ GLOW BACKGROUND */
+
+body::before{
+content:"";
+position:absolute;
+width:600px;
+height:600px;
+background:radial-gradient(circle,#facc15,transparent 60%);
+filter:blur(120px);
+opacity:.25;
+animation:float 10s infinite alternate ease-in-out;
+}
+
+@keyframes float{
+from{transform:translate(-20%, -10%)}
+to{transform:translate(20%, 10%)}
 }
 
 /* 🌊 WAVES */
@@ -33,21 +53,21 @@ bottom:0;
 left:0;
 width:200%;
 height:260px;
-background:rgba(255,215,0,.15);
+background:rgba(255,215,0,.12);
 border-radius:45%;
-animation:waveMove 12s linear infinite;
+animation:waveMove 10s linear infinite;
 }
 
 .wave2{
-bottom:70px;
-opacity:.4;
-animation-duration:16s;
+bottom:80px;
+opacity:.35;
+animation-duration:14s;
 }
 
 .wave3{
-bottom:120px;
+bottom:140px;
 opacity:.2;
-animation-duration:20s;
+animation-duration:18s;
 }
 
 @keyframes waveMove{
@@ -65,12 +85,12 @@ z-index:2;
 }
 
 .card{
-background:rgba(30,41,59,.75);
-backdrop-filter:blur(12px);
+background:rgba(15,23,42,.75);
+backdrop-filter:blur(14px);
 border-radius:20px;
 padding:30px;
-box-shadow:0 0 60px rgba(0,0,0,.9);
-border:2px solid rgba(255,215,0,.3);
+box-shadow:0 0 80px rgba(0,0,0,.9);
+border:2px solid rgba(250,204,21,.4);
 }
 
 /* TITLE */
@@ -80,7 +100,7 @@ text-align:center;
 font-size:1.6rem;
 margin-bottom:20px;
 color:#facc15;
-text-shadow:0 0 10px #facc15;
+text-shadow:0 0 12px #facc15, 0 0 25px #fde047;
 }
 
 /* PROGRESS */
@@ -96,7 +116,7 @@ overflow:hidden;
 height:100%;
 width:0%;
 background:linear-gradient(90deg,#facc15,#fde047);
-box-shadow:0 0 14px #facc15;
+box-shadow:0 0 20px #facc15;
 transition:.35s;
 }
 
@@ -125,16 +145,18 @@ color:#111827;
 background:linear-gradient(135deg,#facc15,#fde68a);
 transition:.25s;
 border:2px solid #fbbf24;
+box-shadow:0 0 15px rgba(250,204,21,.4);
 }
 
 .tiktok-btn:hover{
-transform:scale(1.05);
+transform:scale(1.07);
+box-shadow:0 0 25px #facc15;
 }
 
 .tiktok-btn.done{
 background:linear-gradient(90deg,#22c55e,#4ade80);
 color:white;
-box-shadow:0 0 14px #22c55e;
+box-shadow:0 0 18px #22c55e;
 }
 
 .timer{
@@ -176,10 +198,11 @@ background:linear-gradient(90deg,#facc15,#fde047);
 color:#111827;
 cursor:pointer;
 transition:.25s;
+box-shadow:0 0 15px rgba(250,204,21,.5);
 }
 
 .copy-btn:hover{
-transform:scale(1.05);
+transform:scale(1.07);
 }
 
 /* FOOTER */
@@ -215,16 +238,16 @@ color:#fde68a;
 <div class="tiktok-list" id="tiktokGrid">
 
 <a class="tiktok-btn" id="btn1"
-href="https://www.tiktok.com/@mm2scriptontop"
+href="https://www.tiktok.com/@scriptescapetsunami1?_r=1&_t=ZS-95FKdCeD3B7"
 target="_blank">
-⭐ Join Pirate Crew
+Follow Tiktok 1
 <div class="timer" id="t1"></div>
 </a>
 
 <a class="tiktok-btn" id="btn2"
 href="https://www.tiktok.com/@scriptroblox40"
 target="_blank">
-⚓ Follow Navigator
+Follow Tiktok 2
 <div class="timer" id="t2"></div>
 </a>
 
