@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Escape Tsunami Brainrots Script</title>
+<title>Sailor Piece Script</title>
 
 <style>
 
@@ -20,8 +20,8 @@ min-height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
-background:linear-gradient(180deg,#0369a1,#0ea5e9);
-color:white;
+background:linear-gradient(180deg,#0c4a6e,#075985,#022c22);
+color:#fef3c7;
 overflow:hidden;
 }
 
@@ -32,22 +32,22 @@ position:fixed;
 bottom:0;
 left:0;
 width:200%;
-height:240px;
-background:rgba(255,255,255,.25);
+height:260px;
+background:rgba(255,215,0,.15);
 border-radius:45%;
-animation:waveMove 14s linear infinite;
+animation:waveMove 12s linear infinite;
 }
 
 .wave2{
-bottom:60px;
-opacity:.5;
-animation-duration:18s;
+bottom:70px;
+opacity:.4;
+animation-duration:16s;
 }
 
 .wave3{
-bottom:110px;
-opacity:.25;
-animation-duration:22s;
+bottom:120px;
+opacity:.2;
+animation-duration:20s;
 }
 
 @keyframes waveMove{
@@ -65,20 +65,22 @@ z-index:2;
 }
 
 .card{
-background:rgba(0,0,0,.55);
+background:rgba(30,41,59,.75);
 backdrop-filter:blur(12px);
 border-radius:20px;
 padding:30px;
-box-shadow:0 0 50px rgba(0,0,0,.6);
+box-shadow:0 0 60px rgba(0,0,0,.9);
+border:2px solid rgba(255,215,0,.3);
 }
 
 /* TITLE */
 
 h1{
 text-align:center;
-font-size:1.45rem;
-margin-bottom:18px;
-color:#7dd3fc;
+font-size:1.6rem;
+margin-bottom:20px;
+color:#facc15;
+text-shadow:0 0 10px #facc15;
 }
 
 /* PROGRESS */
@@ -93,8 +95,8 @@ overflow:hidden;
 .bar{
 height:100%;
 width:0%;
-background:linear-gradient(90deg,#22c55e,#4ade80);
-box-shadow:0 0 12px #22c55e;
+background:linear-gradient(90deg,#facc15,#fde047);
+box-shadow:0 0 14px #facc15;
 transition:.35s;
 }
 
@@ -117,19 +119,21 @@ gap:14px;
 text-decoration:none;
 padding:16px;
 border-radius:14px;
-font-weight:600;
+font-weight:700;
 text-align:center;
-color:white;
-background:linear-gradient(135deg,#06b6d4,#3b82f6);
+color:#111827;
+background:linear-gradient(135deg,#facc15,#fde68a);
 transition:.25s;
+border:2px solid #fbbf24;
 }
 
 .tiktok-btn:hover{
-transform:scale(1.04);
+transform:scale(1.05);
 }
 
 .tiktok-btn.done{
-background:linear-gradient(90deg,#22c55e,#16a34a);
+background:linear-gradient(90deg,#22c55e,#4ade80);
+color:white;
 box-shadow:0 0 14px #22c55e;
 }
 
@@ -138,7 +142,7 @@ font-size:.8rem;
 margin-top:6px;
 }
 
-/* SCRIPT TERMINAL */
+/* SCRIPT BOX */
 
 pre{
 display:none;
@@ -146,10 +150,11 @@ margin-top:20px;
 background:#020617;
 border-radius:14px;
 padding:18px;
-color:#7dd3fc;
+color:#facc15;
 font-size:.8rem;
 overflow-x:auto;
 animation:fade .7s ease;
+border:1px solid #facc15;
 }
 
 @keyframes fade{
@@ -166,8 +171,9 @@ width:100%;
 padding:14px;
 border:none;
 border-radius:14px;
-font-weight:600;
-background:linear-gradient(90deg,#38bdf8,#bae6fd);
+font-weight:700;
+background:linear-gradient(90deg,#facc15,#fde047);
+color:#111827;
 cursor:pointer;
 transition:.25s;
 }
@@ -183,6 +189,7 @@ margin-top:18px;
 text-align:center;
 font-size:.75rem;
 opacity:.9;
+color:#fde68a;
 }
 
 </style>
@@ -197,7 +204,7 @@ opacity:.9;
 <div class="container">
 <div class="card">
 
-<h1>Escape Tsunami Brainrots Script</h1>
+<h1>🏴‍☠️ Sailor Piece Script</h1>
 
 <div class="progress">
 <div class="bar" id="bar"></div>
@@ -210,26 +217,26 @@ opacity:.9;
 <a class="tiktok-btn" id="btn1"
 href="https://www.tiktok.com/@mm2scriptontop"
 target="_blank">
-⭐ Follow Main TikTok
+⭐ Join Pirate Crew
 <div class="timer" id="t1"></div>
 </a>
 
 <a class="tiktok-btn" id="btn2"
 href="https://www.tiktok.com/@scriptroblox40"
 target="_blank">
-🌙 Follow Sub TikTok
+⚓ Follow Navigator
 <div class="timer" id="t2"></div>
 </a>
 
 </div>
 
 <pre id="script">
-loadstring(game:HttpGet("https://raw.githubusercontent.com/BestScript-netizen/EscapeTsunami/refs/heads/main/ForBrainrots"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BestScript-netizen/SailorPiece/refs/heads/main/AutoFarm"))()
 </pre>
 
-<button class="copy-btn" id="copyBtn" onclick="copyScript()">📋 Copy Script</button>
+<button class="copy-btn" id="copyBtn" onclick="copyScript()">💰 Copy Treasure Script</button>
 
-<div class="footer">© HdatScript — Escape Tsunami Scripts</div>
+<div class="footer">© HdatScript — Sailor Piece</div>
 
 </div>
 </div>
@@ -243,13 +250,9 @@ let d2=false
 let progress=0
 
 function setProgress(p){
-
 progress=Math.min(100,p)
-
 bar.style.width=progress+"%"
-
 percent.textContent=Math.floor(progress)+"%"
-
 }
 
 function start(btn,timer,done){
@@ -257,33 +260,23 @@ function start(btn,timer,done){
 if(btn.classList.contains("done")) return
 
 let t=WAIT
-
 let step=50/WAIT
 
-timer.textContent=`Verifying... ${t}s`
+timer.textContent=`Scanning... ${t}s`
 
 const iv=setInterval(()=>{
 
 t--
-
 setProgress(progress+step)
-
-timer.textContent=`Verifying... ${t}s`
+timer.textContent=`Scanning... ${t}s`
 
 if(t<=0){
-
 clearInterval(iv)
-
 btn.classList.add("done")
-
-timer.textContent="Followed ✔"
-
+timer.textContent="Completed ✔"
 done()
-
 setProgress(Math.round(progress/50)*50)
-
 check()
-
 }
 
 },1000)
@@ -291,19 +284,12 @@ check()
 }
 
 function check(){
-
 if(d1 && d2){
-
 tiktokGrid.style.display="none"
-
 script.style.display="block"
-
 copyBtn.style.display="block"
-
 setProgress(100)
-
 }
-
 }
 
 btn1.onclick=(e)=>{
@@ -319,27 +305,14 @@ start(btn2,t2,()=>d2=true)
 }
 
 function copyScript(){
-
 navigator.clipboard.writeText(script.innerText.trim())
-
 .then(()=>{
-
-copyBtn.innerText="✅ Copied!"
-
+copyBtn.innerText="🏆 Copied!"
 setTimeout(()=>{
-copyBtn.innerText="📋 Copy Script"
+copyBtn.innerText="💰 Copy Treasure Script"
 },2000)
-
 })
-
 }
-
-document.addEventListener("contextmenu",e=>e.preventDefault())
-
-document.addEventListener("keydown",e=>{
-if(e.key==="F12"||(e.ctrlKey&&["u","i","j","c"].includes(e.key.toLowerCase())))
-e.preventDefault()
-})
 
 </script>
 
